@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # Connect to DB
 basedir = os.path.abspath(os.path.dirname(__file__))
