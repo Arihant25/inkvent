@@ -9,8 +9,9 @@ with open("schema.sql") as file:
 cur = connection.cursor()
 
 cur.execute(
-    "INSERT INTO articles (title, subtitle, date, body, author, img_url, song_url) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO articles (id, title, subtitle, date, body, author, img_url, song_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     (
+        1,
         "Why does Saturn have rings?",
         "Just because.",
         "December 4, 2023",
@@ -22,8 +23,9 @@ cur.execute(
 )
 
 cur.execute(
-    "INSERT INTO articles (title, subtitle, date, body, author, img_url, song_url) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO articles (id, title, subtitle, date, body, author, img_url, song_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     (
+        2,
         "On Indie Music",
         "Indie music is nice!",
         "December 5, 2023",
