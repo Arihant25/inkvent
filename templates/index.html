@@ -1,14 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<h2>List of stuff</h2>
-<ul>
-    {% for page in pages %}
-    <li>
-        <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
-    </li>
-    {% else %}
-    <li>No stuff.</li>
-    {% endfor %}
-</ul>
-{% endblock content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+    <title>inkvent.</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-center"><a href="{{url_for('index')}}">inkvent.</a></div>
+        <div class="nav-right"><a href="{{url_for('about')}}">about us</a></div>
+    </nav>
+
+    <!-- List all articles -->
+    <div class="articles">
+        {% for page in pages %}
+        <div class="article-preview" style="background-image: url('{{page.meta.img_url}}')">
+            <a href="{{ url_for('page', path=page.path) }}">
+                <h2 class="article-title"> {{page.meta.title}} </h2>
+                <p class="article-subtitle"> {{page.meta.subtitle}} </p>
+                <div class="metadata-container">
+                    <p class="date"> {{page.meta.date}} </p>
+                    <p class="author"> {{page.meta.author}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</body>
+
+</html>

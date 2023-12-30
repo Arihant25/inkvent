@@ -26,6 +26,12 @@ def page(path):
     return render_template("page.html", page=page)
 
 
+@app.route("/about.html")
+def about():
+    return render_template("about.html")
+
+
 if __name__ == "__main__":
     freezer.freeze()
+    print(page)
     app.run(port=8000)
