@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inkvent.</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/page.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-center"><a href="{{url_for('index')}}">inkvent.</a></div>
+        <div class="nav-right"><a href="{{url_for('about')}}">about us</a></div>
+    </nav>
+
+    <div class="article-body">
+        <h1>{{page.meta.title}} </h1>
+        <h2>{{page.meta.subtitle}} </h2>
+
+        <div class="metadata-container">
+            <div class="metadata-left">
+                <p class="author"> {{page.meta.author}}</p>
+                <p class="date"> {{page.meta.date}} </p>
+            </div>
+
+            <!-- Spotify integration -->
+            <iframe src="{{page.meta.song_url}}" frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"
+                id="spotify">
+            </iframe>
+        </div>
+
+        <p>{{page.meta.body | safe}}</p>
+    </div>
+</body>
+
+</html>
