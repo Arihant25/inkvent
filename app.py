@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 
+REPO_NAME = "inkvent"
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
@@ -13,12 +14,12 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 
-@app.route("/index.html")
+@app.route(f"/{REPO_NAME}/index.html")
 def index():
     return render_template("index.html", pages=pages)
 
 
-@app.route("/<path:path>/index.html")
+@app.route(f"/{REPO_NAME}/<path:path>/index.html")
 def page(path):
     page = pages.get_or_404(path)
     return render_template("page.html", page=page)
