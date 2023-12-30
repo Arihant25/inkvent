@@ -7,6 +7,7 @@ REPO_NAME = "inkvent"
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
+FREEZER_BASE_URL = "http://localhost/{0}".format(REPO_NAME)
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -14,12 +15,12 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 
-@app.route(f"/{REPO_NAME}/index.html")
+@app.route("/index.html")
 def index():
     return render_template("index.html", pages=pages)
 
 
-@app.route(f"/{REPO_NAME}/<path:path>/index.html")
+@app.route("/<path:path>/index.html")
 def page(path):
     page = pages.get_or_404(path)
     return render_template("page.html", page=page)
