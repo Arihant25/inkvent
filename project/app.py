@@ -1,13 +1,26 @@
-import sys
+import os
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 
 REPO_NAME = "inkvent"
-DEBUG = True
+DEBUG = False
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FREEZER_BASE_URL = "http://localhost/{0}".format(REPO_NAME)
+
+
+def parent_dir(path):
+    """Return the parent of a directory."""
+    return os.path.abspath(os.path.join(path, os.pardir))
+
+
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = parent_dir(APP_DIR)
+FREEZER_DESTINATION = PROJECT_ROOT
+FREEZER_REMOVE_EXTRA_FILES = False
+FLATPAGES_ROOT = os.path.join(APP_DIR, "pages")
+FLATPAGES_EXTENSION = ".md"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -33,5 +46,4 @@ def about():
 
 if __name__ == "__main__":
     freezer.freeze()
-    print(page)
-    app.run(port=8000)
+    # app.run(port=8000, debug=DEBUG)
