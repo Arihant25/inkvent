@@ -1,8 +1,7 @@
 id:
-title: 
-subtitle: 
-date: 
-body: 
-author: 
-img_url: 
+title:
+subtitle:
+date:
+author:
+img_url:
 song_url:
