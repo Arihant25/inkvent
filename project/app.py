@@ -46,4 +46,3 @@ def about():
 
 if __name__ == "__main__":
     freezer.freeze()
-    # app.run(port=8000, debug=DEBUG)
