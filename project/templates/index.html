@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
     <title>inkvent.</title>
 </head>
-
 <body>
     <nav class="navbar">
         <div class="nav-center"><a href="{{url_for('index')}}">inkvent.</a></div>
         <div class="nav-right"><a href="{{url_for('about')}}">about us</a></div>
     </nav>
-
     <!-- List all articles -->
     <div class="articles">
-        {% for page in pages %}
+        {% for page in pages|sort(attribute='meta.id', reverse=True) %}
         <div class="article-preview" style="background-image: url('{{page.meta.img_url}}')">
             <a href="{{ url_for('page', path=page.path) }}">
-                <h2 class="article-title"> {{page.meta.title}} </h2>
-                <p class="article-subtitle"> {{page.meta.subtitle}} </p>
+                <h2 class="article-title">{{page.meta.title}}</h2>
+                <p class="article-subtitle">{{page.meta.subtitle}}</p>
                 <div class="metadata-container">
-                    <p class="date"> {{page.meta.date}} </p>
-                    <p class="author"> {{page.meta.author}}</p>
+                    <p class="date">{{page.meta.date}}</p>
+                    <p class="author">{{page.meta.author}}</p>
                 </div>
             </a>
         </div>
         {% endfor %}
     </div>
-
-
 </body>
-
 </html>
